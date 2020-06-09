@@ -1,0 +1,38 @@
+{%extends 'AW/base.html'%} 
+{% block content %}
+{% load bootstrap3 %}
+{% load static%}
+{% block styles %}
+{% bootstrap_css %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+<style>
+#one{
+  background-color: #E8F6F3;
+}
+</style>
+<div class="container" id="one">
+
+  <div class="row">
+    {% if project%}
+      <h2>Found {{ project|length }} of searched term {{message}}</h2>
+    {% else %}
+      <h2> Found 0 project for the search term {{message}}</h2>
+    {% endif %}
+
+  </div>
+
+  <div class="row">
+
+  {% if project %}
+    {% for proj in project %}
+      <div class="col-sm-6 col-md-3">
+          <h2>{{proj.title}}</h2>
+          <img src="{{proj.image.url}}" class="img-responsive" alt="Image">
+
+      </div>
+    {% endfor %}
+  {% endif %}
+  </div>
+</div>
+{% endblock %}
