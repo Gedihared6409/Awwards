@@ -3,6 +3,8 @@ from django.conf.urls.static import static
 from django.conf.urls import url
 from . import views
 urlpatterns=[
+    url('^$',views.home,name = 'home'),
+    url(r'^post$', views.post, name='post'),
 
 ]
 ## this references the location to the uploaded files.
