@@ -54,3 +54,16 @@ def post(request):
     else:
         form = NewPostForm()
     return render(request, 'AW/post.html', {"form": form})
+@login_required(login_url='/accounts/login/')
+def search_results(request):
+
+    if 'search' in request.GET and request.GET["search"]:
+        search_term = request.GET.get("search")
+        searched_projects = Project.search_project(search_term)
+        message = f"{search_term}"
+
+        return render(request, 'AW/search.html',{"message":message,"project": searched_projects})
+
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'AW/search.html',{"message":message})
