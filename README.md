@@ -11,3 +11,13 @@ Rate/View other people's project.
 View api information of the user.
 Users can post projects, comment, and rate other projects,
 
+## User can search other users project.
+
+Set Up and Installations
+Prerequisites
+Ubuntu Software
+Python3.6
+Postgres
+python virtualenv
+django==1.11
+bootsrap
