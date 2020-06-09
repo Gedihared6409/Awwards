@@ -38,3 +38,19 @@ def edit_profile(request):
    else:
        form=ProfileForm(instance=request.user.profile)
    return render(request,'AW/edit_profile.html',locals())
+
+@login_required(login_url='/accounts/login/')
+def post(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = NewPostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user = current_user
+            
+            post.save()
+        return redirect('home')
+
+    else:
+        form = NewPostForm()
+    return render(request, 'AW/post.html', {"form": form})
